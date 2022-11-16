@@ -66,6 +66,7 @@ abstract class BaseManager implements ActiveRecordHistoryInterface
         switch ($type) {
             case self::AR_INSERT:
                 $data['field_name'] = $pk;
+                $data['new_value'] = json_encode($object->toArray());
                 $this->saveField($data);
                 break;
             case self::AR_UPDATE:
