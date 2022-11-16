@@ -60,7 +60,9 @@ abstract class BaseManager implements ActiveRecordHistoryInterface
 
         if ($this->saveUserId)
             $data['user_id'] = isset(Yii::$app->user->id) ?  Yii::$app->user->id : '';
-
+        if (is_array($data['field_id'])) {
+            $data['field_id'] = json_encode($data['field_id']);
+        }
         switch ($type) {
             case self::AR_INSERT:
                 $data['field_name'] = $pk;
